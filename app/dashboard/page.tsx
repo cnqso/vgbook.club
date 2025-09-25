@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { ActiveRotation } from '@/lib/types';
 import { formatGameTitleWithYear } from '@/lib/utils';
 import Loading from '@/components/Loading';
-import Image from 'next/image';
 
 interface CurrentGame {
   id: number;
@@ -80,8 +79,6 @@ export default function Dashboard() {
             {currentGame.cover_url && (
                 <img
                   src={currentGame.cover_url}
-                //   width={480}
-                //   height={640}
                   alt={currentGame.title}
                   className="current-game-cover"
                 />
@@ -130,8 +127,6 @@ export default function Dashboard() {
                     <img
                       src={game.cover_url}
                       alt={game.title}
-                    //   width={240}
-                    //   height={320}
                       title={`${formatGameTitleWithYear(game.title, game.release_date)} - ${game.username}`}
                       className={`rotation-game-cover ${game.rotation_status}`}
                     />
@@ -195,8 +190,6 @@ export default function Dashboard() {
                     <img
                       src={activity.cover_url}
                       alt={activity.title}
-                    //   width={64}
-                    //   height={84}
                       style={{
                         width: '32px',
                         height: '42px',

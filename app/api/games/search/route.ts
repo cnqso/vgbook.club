@@ -25,6 +25,7 @@ export async function GET(request: NextRequest) {
         summary: game.summary,
         platforms: game.platforms?.map(p => p.name).join(', '),
         release_date: game.first_release_date ? new Date(game.first_release_date * 1000).getFullYear() : null,
+        first_release_date: game.first_release_date || null,
       })),
     });
   } catch (error) {

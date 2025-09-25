@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { verifyToken } from '@/lib/auth';
-import { igdbClient } from '@/lib/igdb';
 import { RowDataPacket } from 'mysql2';
 
 export async function POST(request: NextRequest) {
@@ -16,7 +15,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
 
-    const { igdbId, title } = await request.json();
+    const { igdbId, title, coverUrl, releaseDate } = await request.json();
 
     if (!igdbId || !title) {
       return NextResponse.json(
@@ -45,8 +44,8 @@ export async function POST(request: NextRequest) {
     const nextPosition = (positionResult as RowDataPacket[])[0].next_position;
 
     const [result] = await db.execute(
-      'INSERT INTO games (user_id, igdb_id, title, position_in_queue) VALUES (?, ?, ?, ?)',
-      [user.userId, igdbId, title, nextPosition]
+      'INSERT INTO games (user_id, igdb_id, title, cover_url, release_date, position_in_queue) VALUES (?, ?, ?, ?, ?, ?)',
+      [user.userId, igdbId, title, coverUrl || null, releaseDate || null, nextPosition]
     );
 
     return NextResponse.json({
@@ -55,6 +54,8 @@ export async function POST(request: NextRequest) {
         id: (result as RowDataPacket).insertId,
         igdb_id: igdbId,
         title,
+        cover_url: coverUrl || null,
+        release_date: releaseDate || null,
         status: 'unplayed',
         position_in_queue: nextPosition,
       },
@@ -96,19 +97,9 @@ export async function GET(request: NextRequest) {
 
     const games = rows as RowDataPacket[];
 
-    const gamesWithCovers = await Promise.all(
-      games.map(async (game) => {
-        const igdbGame = await igdbClient.getGameById(game.igdb_id);
-        return {
-          ...game,
-          cover_url: igdbGame?.cover ? igdbClient.formatCoverUrl(igdbGame.cover.url) : null,
-        };
-      })
-    );
-
     return NextResponse.json({
       success: true,
-      games: gamesWithCovers,
+      games,
     });
   } catch (error) {
     console.error('Get games error:', error);

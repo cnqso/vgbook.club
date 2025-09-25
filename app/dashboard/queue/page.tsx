@@ -12,7 +12,6 @@ import {
 } from '@heroicons/react/24/outline';
 import { formatGameTitleWithYear } from '@/lib/utils';
 import Loading from '@/components/Loading';
-import Image from 'next/image';
 
 interface Game {
   id: number;

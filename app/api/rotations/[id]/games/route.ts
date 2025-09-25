@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { verifyToken } from '@/lib/auth';
-import { igdbClient } from '@/lib/igdb';
 import { RowDataPacket } from 'mysql2';
 
 export async function GET(
@@ -24,7 +23,7 @@ export async function GET(
     const rotationId = parseInt(id);
 
     const [rows] = await db.execute(`
-      SELECT rg.*, g.title, g.igdb_id, u.username, g.status as game_status
+      SELECT rg.*, g.title, g.cover_url, g.release_date, g.igdb_id, u.username, g.status as game_status
       FROM rotation_games rg
       JOIN games g ON rg.game_id = g.id
       JOIN users u ON g.user_id = u.id
@@ -34,19 +33,9 @@ export async function GET(
 
     const games = rows as RowDataPacket[];
 
-    const gamesWithCovers = await Promise.all(
-      games.map(async (game) => {
-        const igdbGame = await igdbClient.getGameById(game.igdb_id);
-        return {
-          ...game,
-          cover_url: igdbGame?.cover ? igdbClient.formatCoverUrl(igdbGame.cover.url) : null,
-        };
-      })
-    );
-
     return NextResponse.json({
       success: true,
-      games: gamesWithCovers,
+      games,
     });
   } catch (error) {
     console.error('Get rotation games error:', error);

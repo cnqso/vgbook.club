@@ -4,6 +4,7 @@ import { verifyToken } from '@/lib/auth';
 import { RowDataPacket } from 'mysql2';
 
 export async function GET(request: NextRequest) {
+  console.log('GET /api/dashboard/stats');
   try {
     const token = request.cookies.get('auth-token')?.value;
     if (!token) {
@@ -88,7 +89,7 @@ export async function GET(request: NextRequest) {
       WHERE u.club_id = ? AND g.status = 'playing'
       LIMIT 1
     `, [user.clubId]);
-
+      console.log('Current game rows:', currentGameRows);
     const currentGame = (currentGameRows as { 
       id: number; 
       title: string; 
