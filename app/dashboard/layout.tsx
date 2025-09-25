@@ -60,7 +60,8 @@ export default function DashboardLayout({
         borderBottom: '2px solid var(--border)',
         padding: '16px'
       }}>
-        <div style={{ 
+        {/* Desktop Layout */}
+        <div className="hidden md:flex" style={{ 
           display: 'flex', 
           justifyContent: 'space-between', 
           alignItems: 'center',
@@ -76,7 +77,6 @@ export default function DashboardLayout({
             }}>
               vgbook.club
             </h1>
-
           </div>
           
           <nav style={{ display: 'flex', gap: '0' }}>
@@ -112,6 +112,61 @@ export default function DashboardLayout({
                 marginLeft: '16px',
                 fontWeight: 'bold',
                 fontSize: '12px',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                fontFamily: 'Fira Code, monospace'
+              }}
+            >
+              LOGOUT
+            </button>
+          </nav>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="md:hidden" style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          <nav style={{ 
+            display: 'flex', 
+            gap: '0',
+            width: '100%'
+          }}>
+            {navigation.map((item, index) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  style={{
+                    flex: '1',
+                    padding: '8px 4px',
+                    backgroundColor: isActive ? 'var(--text-primary)' : 'transparent',
+                    color: isActive ? 'var(--bg-base)' : 'var(--text-primary)',
+                    border: '2px solid var(--border)',
+                    borderLeft: index === 0 ? '2px solid var(--border)' : 'none',
+                    textDecoration: 'none',
+                    fontWeight: 'bold',
+                    fontSize: '10px',
+                    textTransform: 'uppercase',
+                    textAlign: 'center',
+                    display: 'block'
+                  }}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+            <button
+              onClick={handleLogout}
+              style={{
+                flex: '1',
+                padding: '8px 4px',
+                backgroundColor: 'var(--error)',
+                color: 'var(--bg-base)',
+                border: '2px solid var(--error)',
+                fontWeight: 'bold',
+                fontSize: '10px',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
                 fontFamily: 'Fira Code, monospace'
