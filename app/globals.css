@@ -1,26 +1,236 @@
 @import "tailwindcss";
 
+/* Web 1.0 / Brutalist Design System */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Catppuccin Mocha Colors */
+  --bg-base: #1e1e2e;
+  --bg-surface: #313244;
+  --bg-overlay: #45475a;
+  --text-primary: #cdd6f4;
+  --text-secondary: #bac2de;
+  --text-muted: #a6adc8;
+  --border: #6c7086;
+  --accent: #f38ba8;
+  --success: #a6e3a1;
+  --warning: #f9e2af;
+  --error: #f38ba8;
+
+  --background: #1e1e2e;
+  --foreground: #cdd6f4;
+  --font-sans: 'Fira Code', monospace;
+  --font-mono: 'Fira Code', monospace;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Remove all border radius globally */
+* {
+  border-radius: 0 !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Brutalist button styles */
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--bg-base);
+  border: 2px solid var(--text-primary);
+  padding: 8px 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: none;
+}
+
+.btn-primary:hover {
+  background: var(--bg-base);
+  color: var(--text-primary);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+  padding: 8px 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-surface);
+}
+
+.btn-danger {
+  background: var(--error);
+  color: var(--bg-base);
+  border: 2px solid var(--error);
+  padding: 8px 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background: var(--bg-base);
+  color: var(--error);
+}
+
+/* Brutalist form inputs */
+input,
+textarea,
+select {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+  padding: 8px;
+  font-family: 'Fira Code', monospace;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--text-primary);
+  background: var(--bg-overlay);
+}
+
+/* Brutalist containers */
+.container-brutal {
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  padding: 16px;
+}
+
+.container-brutal-header {
+  background: var(--text-primary);
+  color: var(--bg-base);
+  padding: 8px 16px;
+  margin: -16px -16px 16px -16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Table styles */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid var(--border);
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-overlay);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Status indicators */
+.status-active {
+  background: var(--success);
+  color: var(--bg-base);
+  padding: 2px 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-completed {
+  background: var(--text-muted);
+  color: var(--bg-base);
+  padding: 2px 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-planned {
+  background: var(--warning);
+  color: var(--bg-base);
+  padding: 2px 8px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Rotation game cover styling */
+.rotation-game-cover {
+  width: 50px;
+  height: 67px;
+  object-fit: cover;
+  border: 2px solid var(--border);
+  transition: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.rotation-game-cover:hover {
+  border-color: var(--text-primary);
+}
+
+.rotation-game-cover.played {
+  filter: grayscale(100%) brightness(0.6);
+  border-color: var(--text-muted);
+}
+
+.rotation-game-cover.playing {
+  border-color: var(--warning);
+  border-width: 3px;
+  box-shadow: 0 0 0 1px var(--warning);
+}
+
+.rotation-game-cover.unplayed {
+  border-color: var(--border);
+}
+
+/* Rotation game container with hover effect */
+.rotation-game-container {
+  position: relative;
+  display: inline-block;
+}
+
+.rotation-game-container:hover .rotation-game-tooltip {
+  opacity: 1;
+}
+
+/* Tooltip styling - improved positioning and visibility */
+.rotation-game-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border: 2px solid var(--text-primary);
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  white-space: nowrap;
+  z-index: 1000;
+  margin-bottom: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Currently playing game cover - EVEN BIGGER */
+.current-game-cover {
+  width: 120px;
+  height: 160px;
+  object-fit: cover;
+  border: 4px solid var(--border);
 }
