@@ -4,7 +4,7 @@ import { verifyToken } from '@/lib/auth';
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.cookies.get('auth-token')?.value;
@@ -17,7 +17,8 @@ export async function POST(
       return NextResponse.json({ error: 'Only club owners can activate rotations' }, { status: 403 });
     }
 
-    const rotationId = parseInt(params.id);
+    const resolvedParams = await params;
+    const rotationId = parseInt(resolvedParams.id);
 
     const connection = await db.getConnection();
     

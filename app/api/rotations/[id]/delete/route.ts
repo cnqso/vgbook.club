@@ -5,7 +5,7 @@ import { RowDataPacket } from 'mysql2';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.cookies.get('auth-token')?.value;
@@ -18,7 +18,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Only club owners can delete rotations' }, { status: 403 });
     }
 
-    const rotationId = parseInt(params.id);
+    const resolvedParams = await params;
+    const rotationId = parseInt(resolvedParams.id);
 
     const [rotationRows] = await db.execute(
       'SELECT id, status FROM rotations WHERE id = ? AND club_id = ?',

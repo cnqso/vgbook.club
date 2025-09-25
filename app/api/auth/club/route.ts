@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import db from '@/lib/db';
 import { verifyClubPasscode } from '@/lib/auth';
+import { RowDataPacket } from 'mysql2';
 
 export async function POST(request: NextRequest) {
   try {

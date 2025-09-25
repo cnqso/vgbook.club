@@ -5,7 +5,7 @@ import { RowDataPacket } from 'mysql2';
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.cookies.get('auth-token')?.value;
@@ -18,7 +18,8 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
 
-    const gameId = parseInt(params.id);
+    const resolvedParams = await params;
+    const gameId = parseInt(resolvedParams.id);
 
     const [gameRows] = await db.execute(
       'SELECT position_in_queue FROM games WHERE id = ? AND user_id = ?',
