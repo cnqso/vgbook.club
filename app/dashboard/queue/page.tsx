@@ -345,9 +345,6 @@ export default function Queue() {
         <div className="space-y-4">
           {games.map((game, index) => (
             <div key={game.id} className="bg-white border rounded-lg p-4 flex items-center space-x-4">
-              <div className="text-sm font-medium text-gray-500 w-8">
-                #{index + 1}
-              </div>
               
               {game.cover_url && (
                 <img

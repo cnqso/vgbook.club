@@ -420,9 +420,6 @@ export default function Rotations() {
                 ) : (
                   rotationGames.map((game) => (
                     <div key={game.id} className="bg-white border rounded-lg p-4 flex items-center space-x-4">
-                      <div className="text-sm font-medium text-gray-500 w-8">
-                        #{game.play_order}
-                      </div>
 
                       {game.cover_url ? (
                         <img

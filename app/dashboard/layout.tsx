@@ -42,8 +42,8 @@ export default function DashboardLayout({
 
   const navigation = [
     { name: 'DASHBOARD', href: '/dashboard' },
-    { name: 'MY QUEUE', href: '/dashboard/queue' },
-    { name: 'CLUB MEMBERS', href: '/dashboard/members' },
+    { name: 'QUEUE', href: '/dashboard/queue' },
+    { name: 'MEMBERS', href: '/dashboard/members' },
     { name: 'ROTATIONS', href: '/dashboard/rotations' },
   ];
 
@@ -89,7 +89,10 @@ export default function DashboardLayout({
                     textDecoration: 'none',
                     fontWeight: 'bold',
                     fontSize: '12px',
-                    textTransform: 'uppercase'
+                    textTransform: 'uppercase',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                 >
                   {item.name}
@@ -108,7 +111,10 @@ export default function DashboardLayout({
                 fontSize: '12px',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
-                fontFamily: 'Fira Code, monospace'
+                fontFamily: 'Fira Code, monospace',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               LOGOUT
@@ -136,8 +142,9 @@ export default function DashboardLayout({
                     fontWeight: 'bold',
                     fontSize: '10px',
                     textTransform: 'uppercase',
-                    textAlign: 'center',
-                    display: 'block'
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                 >
                   {item.name}
@@ -156,7 +163,10 @@ export default function DashboardLayout({
                 fontSize: '10px',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
-                fontFamily: 'Fira Code, monospace'
+                fontFamily: 'Fira Code, monospace',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               LOGOUT

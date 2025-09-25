@@ -223,9 +223,6 @@ export default function Members() {
                   <div className="space-y-3">
                     {memberGames.map((game, index) => (
                       <div key={game.id} className="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
-                        <div className="text-sm font-medium text-gray-500 w-8">
-                          #{index + 1}
-                        </div>
 
                         {game.cover_url && (
                           <img
