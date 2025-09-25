@@ -146,7 +146,6 @@ export default function Members() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Members List */}
         <div className="lg:col-span-1">
           <h2 className="text-lg font-semibold mb-4">Members ({members.length})</h2>
           <div className="space-y-3">
@@ -189,7 +188,6 @@ export default function Members() {
           </div>
         </div>
 
-        {/* Member Details */}
         <div className="lg:col-span-2">
           {selectedMember ? (
             <div>

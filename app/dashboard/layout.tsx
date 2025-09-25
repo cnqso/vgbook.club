@@ -54,20 +54,14 @@ export default function DashboardLayout({
       color: 'var(--text-primary)',
       fontFamily: 'Fira Code, monospace'
     }}>
-      {/* Header Navigation */}
+      
       <div style={{
         backgroundColor: 'var(--bg-surface)',
         borderBottom: '2px solid var(--border)',
         padding: '16px'
       }}>
-        {/* Desktop Layout */}
-        <div className="hidden md:flex" style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center',
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
+        
+        <div className="hidden md:flex justify-between items-center max-w-6xl mx-auto">
           <div>
             <h1 style={{ 
               fontSize: '24px', 
@@ -79,7 +73,7 @@ export default function DashboardLayout({
             </h1>
           </div>
           
-          <nav style={{ display: 'flex', gap: '0' }}>
+          <nav className="flex">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               return (
@@ -122,16 +116,9 @@ export default function DashboardLayout({
           </nav>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="md:hidden" style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
-          <nav style={{ 
-            display: 'flex', 
-            gap: '0',
-            width: '100%'
-          }}>
+        
+        <div className="md:hidden max-w-6xl mx-auto">
+          <nav className="flex w-full">
             {navigation.map((item, index) => {
               const isActive = pathname === item.href;
               return (
@@ -178,7 +165,7 @@ export default function DashboardLayout({
         </div>
       </div>
 
-      {/* Main content */}
+      
       <div style={{ 
         maxWidth: '1200px', 
         margin: '0 auto', 

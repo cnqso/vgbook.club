@@ -70,7 +70,6 @@ export default function Dashboard() {
 
 
 
-      {/* Current Game */}
       {currentGame ? (
         <div className="bg-white rounded-lg shadow-sm border p-6">
           <div className="flex items-center mb-4">
@@ -107,7 +106,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Active Rotation */}
       {activeRotation ? (
         <div className="container-brutal">
           <div className="container-brutal-header">
@@ -173,7 +171,6 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* Recent Activity */}
       <div className="container-brutal">
         <div className="container-brutal-header">
           RECENT ACTIVITY

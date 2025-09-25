@@ -239,7 +239,7 @@ export default function Queue() {
         </button>
       </div>
 
-      {/* Add Game Modal */}
+      
       {showAddGame && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-2xl max-h-[80vh] overflow-hidden">
@@ -328,7 +328,7 @@ export default function Queue() {
         </div>
       )}
 
-      {/* Games List */}
+      
       {games.length === 0 ? (
         <div className="text-center py-12">
           <h3 className="text-lg font-medium mb-2">No games in queue</h3>

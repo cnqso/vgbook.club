@@ -287,7 +287,7 @@ export default function Rotations() {
         ) : null}
       </div>
 
-      {/* Create Rotation Modal */}
+      
       {showCreateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md">
@@ -336,7 +336,7 @@ export default function Rotations() {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Rotations List */}
+        
         <div className="lg:col-span-1">
           <h2 className="text-lg font-semibold mb-4">All Rotations</h2>
           <div className="space-y-3">
@@ -398,7 +398,7 @@ export default function Rotations() {
           </div>
         </div>
 
-        {/* Rotation Details */}
+        
         <div className="lg:col-span-2">
           {selectedRotation ? (
             <div>
