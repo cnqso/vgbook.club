@@ -79,10 +79,10 @@ export default function Dashboard() {
           
           <div className="flex items-center space-x-4">
             {currentGame.cover_url && (
-                <Image
+                <img
                   src={currentGame.cover_url}
-                  width={480}
-                  height={640}
+                //   width={480}
+                //   height={640}
                   alt={currentGame.title}
                   className="current-game-cover"
                 />
@@ -129,11 +129,11 @@ export default function Dashboard() {
               {activeRotation.games.map((game) => (
                 <div key={game.id} className="rotation-game-container">
                   {game.cover_url ? (
-                    <Image
+                    <img
                       src={game.cover_url}
                       alt={game.title}
-                      width={240}
-                      height={320}
+                    //   width={240}
+                    //   height={320}
                       title={`${formatGameTitleWithYear(game.title, game.release_date)} - ${game.username}`}
                       className={`rotation-game-cover ${game.rotation_status}`}
                     />
@@ -195,11 +195,11 @@ export default function Dashboard() {
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   {activity.cover_url ? (
-                    <Image
+                    <img
                       src={activity.cover_url}
                       alt={activity.title}
-                      width={64}
-                      height={84}
+                    //   width={64}
+                    //   height={84}
                       style={{
                         width: '32px',
                         height: '42px',

@@ -276,10 +276,10 @@ export default function Queue() {
                     {searchResults.map((game) => (
                       <div key={game.id} className="flex items-center space-x-4 p-3 border rounded-lg hover:bg-gray-50">
                         {game.cover_url && (
-                          <Image
+                          <img
                             src={game.cover_url}
-                            width={240}
-                            height={320}
+                            // width={240}
+                            // height={320}
                             alt={game.name}
                             className="w-12 h-16 object-cover rounded"
                           />
@@ -350,9 +350,9 @@ export default function Queue() {
               </div>
               
               {game.cover_url && (
-                <Image
-                  width={240}
-                  height={320}
+                <img
+                //   width={240}
+                //   height={320}
                   src={game.cover_url}
                   alt={game.title}
                   className="w-12 h-16 object-cover rounded"

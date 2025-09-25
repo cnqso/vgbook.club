@@ -230,10 +230,10 @@ export default function Members() {
                         </div>
 
                         {game.cover_url && (
-                          <Image
+                          <img
                             src={game.cover_url}
-                            width={240}
-                            height={320}
+                            // width={240}
+                            // height={320}
                             alt={game.title}
                             className="w-10 h-14 object-cover rounded"
                           />
